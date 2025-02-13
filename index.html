@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love 💖</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@500&display=swap');
+        
+        body {
+            background: linear-gradient(to right, #ffdde1, #ee9ca7);
+            text-align: center;
+            font-family: 'Quicksand', sans-serif;
+            color: #fff;
+            overflow: hidden;
+        }
+        
+        h1, p {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .container {
+            margin-top: 100px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+            display: inline-block;
+        }
+        
+        button {
+            background: #ff4d6d;
+            border: none;
+            color: white;
+            padding: 15px 25px;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        button:hover {
+            background: #ff1e56;
+        }
+        
+        #no-btn {
+            transition: 0.3s ease-in-out;
+        }
+        
+        #proposal-container {
+            display: none;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(255, 182, 193, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            z-index: 999;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: pink;
+            opacity: 0.7;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            from { transform: translateY(-10vh) rotate(0deg); }
+            to { transform: translateY(100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <h1>💖 My Love, My Everything 💖</h1>
+    
+    <div class="container" id="question-container">
+        <p>I've been thinking a lot about this, and there's something I've been meaning to ask you...</p>
+        <button onclick="askProposal()">Do you want to know? 💕</button>
+    </div>
+    
+    <div class="container" id="proposal-container">
+        <p>Will you make me the happiest person in the world and Be my valentine?(ALSO MY FUTURE HUSBAND?) 💍</p>
+        <button onclick="sayYes()">YESSS 💖</button>
+        <button id="no-btn" onclick="sayNo()">No? 😭</button>
+    </div>
+    
+    <script>
+        function askProposal() {
+            document.getElementById('question-container').style.display = 'none';
+            document.getElementById('proposal-container').style.display = 'block';
+        }
+
+        let noClickCount = 0;
+        function sayNo() {
+            noClickCount++;
+            const noBtn = document.getElementById("no-btn");
+            if (noClickCount === 1) {
+                noBtn.innerText = "Are you SURE? 🥺";
+                noBtn.style.fontSize = "1.5rem";
+                noBtn.style.padding = "20px 30px";
+            } else if (noClickCount === 2) {
+                noBtn.innerText = "Really really sure? 😭";
+                noBtn.style.fontSize = "1.8rem";
+                noBtn.style.padding = "25px 35px";
+            } else {
+                noBtn.innerText = "Okay... But I still love you 💕";
+                noBtn.style.fontSize = "2rem";
+                noBtn.style.padding = "30px 40px";
+            }
+        }
+
+        function sayYes() {
+            const celebrationDiv = document.createElement('div');
+            celebrationDiv.className = 'celebration';
+            celebrationDiv.innerHTML = `<h1>YAY! 💖I KNEW IT... I LOVE YOU SO MUCH! 🥰💞</h1>`;
+            document.body.appendChild(celebrationDiv);
+            
+            for (let i = 0; i < 50; i++) {
+                let confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + "vw";
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                confetti.style.background = ["pink", "hotpink", "white", "red"][Math.floor(Math.random() * 4)];
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+    </script>
+</body>
+</html>
